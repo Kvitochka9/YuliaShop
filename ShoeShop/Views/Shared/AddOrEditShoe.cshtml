@@ -1,0 +1,52 @@
+﻿@model ShoeCreateUpdateViewModel
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="form-group">
+                <label asp-for="ShoeDto.Name"></label>
+                <input asp-for="ShoeDto.Name" class="form-control" />
+                <span asp-validation-for="ShoeDto.Name"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShoeDto.CategoryId"></label>
+                <select class="custom-select" asp-for="ShoeDto.CategoryId">
+                    <option value=""></option>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="ShoeDto.CategoryId"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShoeDto.ShortDescription"></label>
+                <input asp-for="ShoeDto.ShortDescription" class="form-control" />
+                <span asp-validation-for="ShoeDto.ShortDescription"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShoeDto.LongDescription"></label>
+                <textarea asp-for="ShoeDto.LongDescription" class="form-control"></textarea>
+                <span asp-validation-for="ShoeDto.LongDescription"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShoeDto.Price"></label>
+                <input asp-for="ShoeDto.Price" class="form-control" />
+                <span asp-validation-for="ShoeDto.Price"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShoeDto.ImageUrl"></label>
+                <input asp-for="ShoeDto.ImageUrl" class="form-control" />
+                <span asp-validation-for="ShoeDto.ImageUrl"></span>
+            </div>
+            <div class="form-check form-group">
+                <input type="checkbox" class="form-check-input" asp-for="ShoeDto.IsShoeOfTheWeek">
+                <label class="form-check-label" asp-for="ShoeDto.IsShoeOfTheWeek"></label>
+                <span asp-validation-for="ShoeDto.IsShoeOfTheWeek"></span>
+            </div>
+            <div class="form-group">
+                <button class="btn buy-now-btn">Зберегти</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+﻿@model ShoppingCartViewModel
+@{
+    ViewData["Title"] = "Cart";
+}
+<h2>Кошик <i class="fa fa-shopping-cart" aria-hidden="true"></i> </h2>
+
+
+@if (Model.ShoppingCart.ShoppingCartItems?.Count() <= 0)
+{
+    <br />
+    <h6>Ой! Ваш кошик ще пустий!</h6>
+    return;
+}
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Товар</th>
+            <th>Розмір</th>
+            <th>Кількість</th>
+            <th>Ціна</th>
+            <th>Підсумок</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
+        {
+            <tr>
+                <td>@item.Shoe.Name</td>
+                <td>
+                    <form class="d-inline align-middle" asp-action="DecreaseSize"
+                    asp-controller="ShoppingCart"
+                    asp-route-shoeId="@item.ShoeId"
+                    method="post">
+                    <button class="btn fa fa-minus fa-small" aria-hidden="true"></button>
+                </form>
+                    <span style="padding:1px 10px">@item.Size</span>
+                <form class="d-inline align-middle" asp-action="IncreaseSize"
+                    asp-controller="ShoppingCart"
+                    asp-route-shoeId="@item.ShoeId"
+                    method="post">
+                    <button class="btn fa fa-plus fa-small" aria-hidden="true"></button>
+                </form>
+                </td>
+                <td>
+                    <form class="d-inline align-middle" asp-action="RemoveFromShoppingCart"
+                          asp-controller="ShoppingCart"
+                          asp-route-shoeId="@item.ShoeId"
+                          method="post">
+                        <button class="btn fa fa-minus fa-small" aria-hidden="true"></button>
+                    </form>
+                    <span style="padding:1px 10px">@item.Qty</span>
+                    <form class="d-inline align-middle" asp-action="AddToShoppingCart"
+                          asp-controller="ShoppingCart"
+                          asp-route-shoeId="@item.ShoeId"
+                          method="post">
+                        <button class="btn fa fa-plus fa-small" aria-hidden="true"></button>
+                    </form>
+
+                </td>
+                <td>@item.Shoe.Price.ToString("c")</td>
+                <td>@((item.Shoe.Price * item.Qty).ToString("c"))</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">До сплати: </td>
+            <td>@Model.ShoppingCartTotal.ToString("c")</td>
+        </tr>
+        <tr style="border:0">
+            <td>
+                <form asp-action="RemoveAllCart" method="post">
+                    <button class="btn btn-link text-dark" asp-action="RemoveAllCart">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                        Очистити кошик
+                    </button>
+                </form>
+
+            </td>
+            <td colspan="2"></td>
+            <td class="text-center">
+                <a class="btn buy-now-btn float-right" asp-action="checkout" asp-controller="order">
+                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                    Замовити
+                </a>
+            </td>
+        </tr>
+    </tfoot>
+</table>

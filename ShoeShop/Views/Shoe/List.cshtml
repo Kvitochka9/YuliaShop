@@ -1,0 +1,20 @@
+﻿@model ShoesListViewModel
+
+@if (Model.Shoes?.Count() > 0)
+{
+    <h1>@Model.CurrentCategory</h1>
+   @* <p>
+       Here could be the category's description
+    </p>*@
+    <div class="row">
+        @foreach (var shoe in Model.Shoes)
+        {
+            @await Html.PartialAsync("ShoeView", shoe);
+        }
+    </div>
+}
+else
+{
+    <h1>Взуття</h1>
+    <p>Вибачте! У категорії '@Model.CurrentCategory' не знайдено взуття. </p>
+}

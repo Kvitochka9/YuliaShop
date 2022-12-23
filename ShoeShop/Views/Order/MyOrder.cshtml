@@ -1,0 +1,5 @@
+﻿@model IEnumerable<MyOrderViewModel>
+
+<h2>Мої замовлення</h2>
+
+@await Html.PartialAsync("OrderList", Model)

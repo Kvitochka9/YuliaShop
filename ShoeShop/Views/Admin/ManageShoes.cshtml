@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ShoeNameIdDto>
+@{
+    ViewData["Title"] = "ManageShoes";
+}
+<h2>Керувати товарами</h2>
+<br />
+<div>
+    <a asp-action="AddShoe" class="btn buy-now-btn">Додати взуття</a>
+</div>
+<br />
+<table class="table ">
+    <thead>
+        <tr>
+            <th>Назва взуття</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var shoe in Model)
+        {
+            <tr id="shoe-@shoe.Id">
+                <td>@shoe.Name</td>
+                <td>
+                    <a class="btn btn-link btn-no-effect" asp-action="EditShoe" asp-route-id="@shoe.Id">Редагувати </a>
+                    |
+                    <button class="btn btn-link btn-no-effect deleteBtn" data-id="@shoe.Id">Видалити</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $(".deleteBtn").click((e) => {
+            const id = $(e.target).data("id");
+            if (!confirm("Ви певні що хочете видалити даний товар?"))
+                return;
+
+            $.ajax({
+                url: '/admin/manageShoes/' + id,
+                type: 'DELETE',
+                success: () => {
+                    const target = $("#shoe-" + id);
+                    $(target).fadeOut(500, () => $(target).remove());
+                },
+                error: (e) => {
+                    alert("Щось пішло не так", e);
+                }
+            });
+        });
+    </script>
+}
