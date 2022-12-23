@@ -5,42 +5,42 @@ A sample ShoesWebStore built with ASP.NET Core (Multi-Page Application)
 ![screenshot1](./screenshots/scrnsht1.png)
 
 ## APP/Code Features
-- Only Admin can perform Create/Edit/Delete shoes & manage Orders.
-- Normal User can only can buy shoes & view their orders.
-- Managing Cart System using cookie.
-- Client Side & Server side validation,
-- Cookie Based Authentication & Authorization - Not Session
-- Login through either `Username` or `Email`.
-- Responsive UI
-- Repository Pattern
-- Application Architecture is decoupled form ORM (Entity Framework)
+- Лише адміністратор може створювати/редагувати/видаляти взуття та керувати замовленнями.
+- Звичайний користувач може лише купувати взуття та переглядати свої замовлення.
+- Управління системою кошиків за допомогою файлів cookie.
+- Перевірка на стороні клієнта та на стороні сервера,
+- Автентифікація та авторизація на основі файлів cookie - не сеанс
+- Увійдіть за допомогою `Ім'я користувача` або `Електронна пошта`.
+- Чуйний інтерфейс користувача
+- Шаблон сховища
+- Архітектура програми відокремлена від ORM (Entity Framework)
 
 ## Framework / Library
 - ASP.NET Core 2.0 *(Backend)*
-- Razor View Engine *(For generating markup)*
+- Механізм перегляду Razor *(Для створення розмітки)*
 - Entity Framework Core *(ORM)*
-- ASP.NET Identity *(Cookie Based Authentication & Authorization - Not Session)*
-- AutoMapper *(For mapping into Domain Model & DTO)*
+- Ідентифікація ASP.NET *(автентифікація та авторизація на основі файлів cookie - не сеанс)*
+- AutoMapper *(Для відображення в моделі домену та DTO)*
 - jQuery & Bootstap 4
 
-## To run the project locally:
-   > admin account : `admin@admin.com` and Password: `Passw@rd!123` (You can change it from `appsettings.json` before apply `update database`)
+## Щоб запустити проект локально:
+    > обліковий запис адміністратора: `admin@admin.com` і пароль: `Passw@rd!123` (Ви можете змінити його в `appsettings.json` перед застосуванням `оновлення бази даних`)
 
-   > Make sure, dotnet core SDK & npm is installed in your machine.
+    > Переконайтеся, що на вашій машині встановлено дотнет-ядро SDK і npm.
 
-- **Using VS2022**
+- **Використовуючи VS2022**
      ```
        > git clone https://github.com/AskoldNebelskyi/ShoesWebStore
        > cd ShoesWebStore/
     ```
-    - Now Open the `ShoesWebStore.sln` through `VS2022`.
-    - Open `appsettings.json` & change the connection string. (It as this the default connection string of `SQL Server Express` that comes with `Visual Studio`).
-    - Hit `Ctrl+Shift+B` to build.
-    - Open project directory in terminal and run `npm install`
-    - Open `Package Manager Console` from `Tools` and enter `Update-Database`.
-    - Hit `Ctrl+F5` to run without debugging.
+    - Тепер відкрийте `ShoesWebStore.sln` через `VS2022`.
+     - Відкрийте `appsettings.json` і змініть рядок підключення. (Це стандартний рядок підключення `SQL Server Express`, який постачається з `Visual Studio`).
+     - Натисніть `Ctrl+Shift+B`, щоб створити.
+     - Відкрийте каталог проекту в терміналі та запустіть `npm install`
+     - Відкрийте `Package Manager Console` з `Tools` і введіть `Update-Database`.
+     - Натисніть `Ctrl+F5`, щоб запустити без налагодження.
 
-- **Using CLI**
+- **Використовуючи CLI**
     ```
         > git clone https://github.com/AskoldNebelskyi/ShoesWebStore
         > cd ShoesWebStore/ShoesWebStore
